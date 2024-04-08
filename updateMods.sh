@@ -37,6 +37,17 @@ update_all_mods() {
     done
 }
 
+# Function to update a mod
+install_mod() {
+    MODID="$1"
+    
+    # Step 1: Download mod via steamcmd
+    steamcmd +force_install_dir "$SRVPATH" +login anonymous +workshop_download_item 393380 "$MODID" +quit
+    
+    # Step 3: Copy mod to MODPATH
+    cp -r "$SRVPATH/steamapps/workshop/content/393380/$MODID/" "$MODPATH"
+}
+
 # Function to list all current mods
 list_mods() {
     echo -e "\e[36mCurrent mods:\e[0m"

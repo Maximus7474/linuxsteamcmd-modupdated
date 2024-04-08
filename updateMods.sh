@@ -46,6 +46,7 @@ install_mod() {
     
     # Step 3: Copy mod to MODPATH
     cp -r "$SRVPATH/steamapps/workshop/content/393380/$MODID/" "$MODPATH"
+    echo -e "[\e[32mINSTALL\e[0m] Installed Mod: $MODID"
 }
 
 # Function to list all current mods

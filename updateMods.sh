@@ -37,6 +37,24 @@ update_all_mods() {
     done
 }
 
+# Function to list all current mods
+list_mods() {
+    echo -e "\e[36mCurrent mods:\e[0m"
+    for mod_folder in "$MODPATH"/*; do
+        if [ -d "$mod_folder" ]; then
+            mod_id=$(basename "$mod_folder")
+            if [[ "$mod_id" =~ ^[0-9]+$ ]]; then
+                echo -e " - \e[32m$mod_id\e[0m"
+                # Get the first folder name inside each mod folder
+                first_folder=$(find "$mod_folder" -mindepth 1 -maxdepth 1 -type d -print -quit)
+                if [ -n "$first_folder" ]; then
+                    echo -e "   - First folder inside: \e[32m$(basename "$first_folder")\e[0m"
+                fi
+            fi
+        fi
+    done
+}
+
 # Function to remove all mods
 remove_all_mods() {
     echo -e "\e[33mRemoving all mods...\e[0m"
@@ -71,6 +89,8 @@ elif [ "$1" == "-install" ]; then
         exit 1
     fi
     install_mod "$2"
+elif [ "$1" == "-list" ]; then
+    list_mods
 elif [ "$1" == "-removeall" ]; then
     remove_all_mods
 elif [ "$1" == "-remove" ]; then

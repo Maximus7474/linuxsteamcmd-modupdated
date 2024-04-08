@@ -1,8 +1,8 @@
 #!/bin/bash
 
 # Global variables
-SRVPATH="/home/squadservers/LigueFrancaiseSquad"
-MODPATH="/home/squadservers/LigueFrancaiseSquad/serverfiles/SquadGame/Plugins/Mods"
+SRVPATH="/home/user"
+MODPATH="/home/user/serverfiles/GameFolder/Plugins/Mods"
 
 # Function to update a mod
 update_mod() {

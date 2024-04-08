@@ -23,15 +23,15 @@ update_mod() {
 
 # Function to update all mods
 update_all_mods() {
-    echo -e "[\e[32mUPDATING\e[0m] Started Task to update all current mods"
+    echo -e "[\e[32mUPDATING\e[0m] Task Started"
     for mod_folder in "$MODPATH"/*; do
         if [ -d "$mod_folder" ]; then
             mod_id=$(basename "$mod_folder")
             if [[ "$mod_id" =~ ^[0-9]+$ ]]; then
-                echo -e "[\e[32mUpdating\e[0m] mod: $mod_id"
+                echo -e "[\e[32mUPDATING\e[0m] $mod_id"
                 update_mod "$mod_id"
             else
-                echo -e "\e[36mSkipping non-numeric mod folder\e[0m: $mod_id"
+                echo -e "\e[36mSkipping invalid mod folder\e[0m: $mod_id"
             fi
         fi
     done
@@ -46,6 +46,7 @@ install_mod() {
     
     # Step 3: Copy mod to MODPATH
     cp -r "$SRVPATH/steamapps/workshop/content/393380/$MODID/" "$MODPATH"
+    echo
     echo -e "[\e[32mINSTALL\e[0m] Installed Mod: $MODID"
 }
 
@@ -60,7 +61,7 @@ list_mods() {
                 # Get the first folder name inside each mod folder
                 first_folder=$(find "$mod_folder" -mindepth 1 -maxdepth 1 -type d -print -quit)
                 if [ -n "$first_folder" ]; then
-                    echo -e "   - First folder inside: \e[32m$(basename "$first_folder")\e[0m"
+                    echo -e "   - Mod Name: \e[32m$(basename "$first_folder")\e[0m"
                 fi
             fi
         fi
